@@ -1,0 +1,41 @@
+name: Compile Stylus to CSS and Slim to HTML
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup node 
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16.x
+        
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        
+    - name: Run stylus 
+      run: |
+        npm install stylus -g
+        stylus *.styl
+        
+    - name: Run slim
+      run: |
+        gem install slim
+        slimrb *.slim --pretty > out.html
+       
+    - name: Commit changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git push origin --delete build
+          git checkout --orphan build
+          shopt -s extglob
+          rm *.!(html|css)
+          git add --all
+          git commit --message="Compile Stylus to CSS and Slim to HTML" --allow-empty
+        git push --set-upstream origin build
