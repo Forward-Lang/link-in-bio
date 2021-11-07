@@ -38,4 +38,4 @@ jobs:
           rm *.!(html|css)
           git add --all
           git commit --message="Compile Stylus to CSS and Slim to HTML" --allow-empty
-        git push --set-upstream origin build
+        git push --force --set-upstream origin build
