@@ -30,7 +30,7 @@ jobs:
         
     - name: Add css inline to HTML
       run: |
-        sed -i '/rel="stylesheet" href="stylesheet.css"/ {
+        sed -i '/href="stylesheet.css" rel="stylesheet"/ {
               i <style>
               r stylesheet.css
               a </style>
