@@ -30,7 +30,11 @@ jobs:
         
     - name: Add css inline to HTML
       run: |
-        sed '/rel="stylesheet" href="stylesheet.css"/ { r stylesheet.css ; d }' index.html
+        sed -i '/rel="stylesheet" href="stylesheet.css"/ {
+              i <style>
+              r stylesheet.css
+              a </style>
+              d }' index.html
        
     - name: Commit changes
       run: |
