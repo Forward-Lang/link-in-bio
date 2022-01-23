@@ -1,0 +1,17 @@
+html {
+  max-width: 80%;
+  margin: auto;
+  padding: 3em 1em;
+  line-height: 1.75;
+  font-size: calc(1em + 1vmin);
+  text-align: center;
+}
+img {
+  max-width: 100%;
+}
+nav ul {
+  padding: 0;
+}
+nav ul li {
+  list-style-type: none;
+}
